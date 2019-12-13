@@ -22,3 +22,8 @@ If you want to use it yourself the setup is something along these lines.
 
 I am hoping that Wyze will come out with a direct API to remove the requirement for IFTTT but as it stands there is no direct integration.
 
+## Feedback / Usage
+
+I have now used this solution for two months. Overall it has been working great,  there are a couple of small issues I would like to find a solution for. 
+* When power is lost the light turns to an on state when restored, this seems like an option which should be configurable on the bulb
+* I run this is a cron job on a RasberryPi but it requires running 24-7
