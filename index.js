@@ -4,7 +4,7 @@ const DARKSKY_API_KEY = process.env.DARKSKY_API_KEY || '';
 const MAKER_KEY = process.env.MAKER_KEY || '';
 // imports
 const schedule = require('node-schedule');
-const axios = require('axios');
+
 
 // this next bit seems hacky but the schedule library won't keep 
 // things running even while items are scheduled
@@ -15,7 +15,7 @@ server.listen(8080);
 server.on('listening', () => { });
 
 const getWeather = async (location='39.696570,-84.315624') => {
-    return axios.get(
+    return fetch(
         `https://api.darksky.net/forecast/${DARKSKY_API_KEY}/${location}`
     )
     .then(response => response.data);
@@ -23,7 +23,7 @@ const getWeather = async (location='39.696570,-84.315624') => {
 
 const emitEvent = (event='') => {
     console.log(`Running event: ${event}`)
-    return axios.get(`https://maker.ifttt.com/trigger/${event}/with/key/${MAKER_KEY}`).then(result => {
+    return fetch(`https://maker.ifttt.com/trigger/${event}/with/key/${MAKER_KEY}`).then(result => {
         // exit for the day if the lights are done
         if (event === 'lights_off') {
             console.log('emitEvent, lights _off')
